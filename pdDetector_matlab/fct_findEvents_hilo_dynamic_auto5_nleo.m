@@ -1,0 +1,123 @@
+function [ LOC, theseEvents, eeg_bp_smooth ] = fct_findEvents_hilo_dynamic_auto5_nleo( seg, Fs,...
+    thresh_hi, thresh_lo, smoothWin, freq_lo, freq_hi, boostWin, meanWin, channelLabels)
+%fct_findEvents_hilo_dynamic_auto5_nleo.  Meant to recreate Ruijter et al.
+% INPUT seg, nxm double array of EEG in bipolar montage
+%       Fs, sampling freq in sec-1
+%      ***
+% OUTPUT 
+%       LOC, nxm logical array corresponding to positions of candidate
+%           discharges.
+%       theseEvents, nx1 cell array of structs containing stat objects
+%       from region props
+%
+ 
+        channels = channelLabels;
+        LOC = zeros(size(seg));
+%         thresh_hi = 15*5;
+%         smoothWin = 20;
+%                 
+        % band-pass filter
+%         eeg_bp = eegfilt(seg,Fs,freq_lo,freq_hi);   % from EEG Toolbox
+                
+        % nleo
+        eeg_bp = calc_nleo(seg,Fs);
+
+        eeg_bp_smooth = nan(size(eeg_bp));
+        
+%         theseEvents = cell(size(eeg_bp,1),1);
+        theseEvents = table();
+        
+        eeg_bp_smooth = simplema(eeg_bp,smoothWin,2);
+%         for j=1:size(eeg_bp,1)
+%            thisEEG_bp_smooth = smooth((eeg_bp(j,:).^2)',smoothWin)';
+%            eeg_bp_smooth(j,:) = thisEEG_bp_smooth;
+%         end
+%         
+        % apply a transform (intended for bipolar montages) to boost detection of
+        % events that co-occur with other events in other channels.
+%         eeg_bp_smooth_transf = eeg_bp_smooth.*repmat(smooth(sum(eeg_bp_smooth,1),boostWin)',18,1);
+%         eeg_bp_smooth = eeg_bp_smooth_transf/50; % arbitrary scaling     
+        
+        % Adaptive threshold per Ruijter et al.
+        
+        indx_start =[0*Fs+1:Fs:size(eeg_bp_smooth,2)-(4*Fs)-1];
+        indx_stop = [5*Fs-1:Fs:size(eeg_bp_smooth,2)];
+        
+        % sliding 1 sample at a time, vs 1 second at a time.
+%         indx_start =[0*Fs+1:size(eeg_bp_smooth,2)-(5*Fs)+1];
+%         indx_stop = [5*Fs-1:size(eeg_bp_smooth,2)-1];
+                
+%         eeg_bp_adptv_t = arrayfun(@(start,stop) 0.6*(std(eeg_bp_smooth(:,start:stop),[],2) + ...
+%             prctile(eeg_bp_smooth(:,start:stop),75)), ...
+%             indx_start, indx_stop,'UniformOutput','false');
+%         
+        eeg_bp_adptv_t = zeros(size(eeg_bp_smooth,1),length(indx_start));
+        eeg_bp_adptv_t_f = zeros(size(eeg_bp_smooth));
+        
+        for k=1:length(indx_start)
+            eeg_bp_adptv_t(:,k) = 0.6*(std(eeg_bp_smooth(:,indx_start(k):indx_stop(k)),[],2) + ...
+            prctile(eeg_bp_smooth(:,indx_start(k):indx_stop(k)),75,2));
+            eeg_bp_adptv_t_f(:,indx_start(k):indx_stop(k)) = repmat(eeg_bp_adptv_t(:,k),1,indx_stop(k)-indx_start(k)+1);
+        
+        end
+        
+%         isect_f = eeg_bp_smooth>simple_interp(eeg_bp_adptv_t,0,2800,10/2800);
+        isect_f = eeg_bp_smooth>eeg_bp_adptv_t_f;
+        
+%         interp1(repmat(indx_start,18,1),eeg_bp_adptv_t,repmat(1:2800,18,1));
+        for j=1:size(eeg_bp_smooth,1)
+           
+           thisEEG_bp_smooth = eeg_bp_smooth(j,:); 
+           
+%            eeg_prctl_hi = prctile(thisEEG_bp_smooth, thresh_hi);
+%            eeg_prctl_lo = prctile(thisEEG_bp_smooth, thresh_lo);
+%            
+           
+%            % high-low threshold
+%            bw_hi = thisEEG_bp_smooth>eeg_prctl_hi;
+%            bw_lo = thisEEG_bp_smooth>eeg_prctl_lo;
+            
+%             lpds_hi = regionprops(bw_hi,'PixelIdxList');
+% %            lpds_lo = regionprops('table',thisEEG_bp_smooth>thresh_lo,'PixelIdxList');
+%            
+%            indx_hi = cat(1, lpds_hi.PixelIdxList);
+% %            indx_lo = cat(1, lpds_lo.PixelIdxList);
+%            
+%            isect = bwselect([bw_lo; bw_lo]', ones(length(indx_hi),1), indx_hi,4);   % must be 2D, order is critical, takes binary image but needs pixel ids for selection
+%            isect = isect(:,1)';
+           
+           isect = isect_f(j,:);           
+
+           lpds_ = regionprops('table',isect,thisEEG_bp_smooth,'Area',...
+               'BoundingBox','PixelIdxList','MaxIntensity','MeanIntensity','PixelValues','WeightedCentroid');
+           
+           lpds_raw = regionprops('table',isect,eeg_bp(j,:),...
+               'MaxIntensity','MeanIntensity','MinIntensity','PixelValues');
+      
+           theseVarNames = lpds_raw.Properties.VariableNames;
+           
+           % append 'raw' to variable names from raw eeg (vs. values from
+           % the transformed data)
+           for k=1:length(theseVarNames)
+              thisVarName = theseVarNames{k};
+              theseVarNames(k) = {[thisVarName '_raw']};           
+           end
+           
+           lpds_raw.Properties.VariableNames = theseVarNames;
+           thisResult = cat(2,lpds_,lpds_raw);
+           
+           thisResult.channel = repmat(channels(j),size(lpds_,1),1);
+           thisResult.channelNum = repmat(j,size(lpds_,1),1);
+           thisResult.channelEventNum = num2cell(1:size(lpds_,1))';
+%            theseEvents = cat(1,theseEvents, thisResult);
+           
+           theseEvents = addToEventsList(thisResult, theseEvents);
+        end
+        
+        theseEvents.eventNum = num2cell(1:size(theseEvents,1))';
+        
+        LOC = fct_LOCfromEventsTbl(channels, theseEvents); 
+        
+
+end
+
