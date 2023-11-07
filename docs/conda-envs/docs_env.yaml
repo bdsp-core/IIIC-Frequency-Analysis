@@ -10,3 +10,8 @@ dependencies:
   - sphinx
   - sphinx_rtd_theme
   - myst-parser
+  - pandas
+  - scikit-image
+  - scikit-learn
+  - matplotlib
+  - fire

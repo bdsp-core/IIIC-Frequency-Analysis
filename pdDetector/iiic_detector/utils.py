@@ -7,11 +7,9 @@ import skimage.morphology
 import sklearn.cluster
 import scipy.fftpack
 import pandas as pd
-import numpy.matlib
 import numpy as np
 
 import matlab.engine
-import matlab
 
 
 def make_dir_safe(dirname: str) -> None:

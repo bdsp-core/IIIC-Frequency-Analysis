@@ -33,6 +33,9 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 napoleon_custom_sections = [("Returns", "params_style")]
 
+# Mocking matlab
+autodoc_mock_imports = ["matlab"]
+
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
