@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = "pdDetector"
-copyright = "2023, Dr. Chris McGraw, Shashank Manjunath, Samvrit Rao"
-author = "Dr. Chris McGraw, Shashank Manjunath, Samvrit Rao"
+copyright = "2023, Dr. Michael Brandon Westover, Dr. Chris McGraw, Dr. Jin Jing, Shashank Manjunath, Samvrit Rao"
+author = "Dr. Michael Brandon Westover, Dr. Chris McGraw, Dr. Jin Jing, Shashank Manjunath, Samvrit Rao"
 
 import os
 import sys
