@@ -1,0 +1,488 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iiic_detector package &mdash; pdDetector  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="iiic_detector" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            pdDetector
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="readme_link.html">IIIC-Frequency-Analysis</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">iiic_detector</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">iiic_detector package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-iiic_detector.calculate">iiic_detector.calculate module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.calculate.calc_periodicity"><code class="docutils literal notranslate"><span class="pre">calc_periodicity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.calculate.calc_spatial_extent"><code class="docutils literal notranslate"><span class="pre">calc_spatial_extent()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-iiic_detector.eegfilt">iiic_detector.eegfilt module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.eegfilt.eegfilt"><code class="docutils literal notranslate"><span class="pre">eegfilt()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-iiic_detector.find_events">iiic_detector.find_events module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.find_events.find_events_simple"><code class="docutils literal notranslate"><span class="pre">find_events_simple()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.find_events.group_events_bi"><code class="docutils literal notranslate"><span class="pre">group_events_bi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.find_events.hilo_dynamic_auto6"><code class="docutils literal notranslate"><span class="pre">hilo_dynamic_auto6()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-iiic_detector.pd_detect">iiic_detector.pd_detect module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.pd_detect.pd_detect"><code class="docutils literal notranslate"><span class="pre">pd_detect()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-iiic_detector.utils">iiic_detector.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.FileData"><code class="docutils literal notranslate"><span class="pre">FileData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.MATFile"><code class="docutils literal notranslate"><span class="pre">MATFile</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.bwselect"><code class="docutils literal notranslate"><span class="pre">bwselect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.create_nan_df"><code class="docutils literal notranslate"><span class="pre">create_nan_df()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.create_table_df"><code class="docutils literal notranslate"><span class="pre">create_table_df()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.cull_events_by_channel"><code class="docutils literal notranslate"><span class="pre">cull_events_by_channel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.get_channel_labels_bipolar"><code class="docutils literal notranslate"><span class="pre">get_channel_labels_bipolar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.kmeans"><code class="docutils literal notranslate"><span class="pre">kmeans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.l_bipolar"><code class="docutils literal notranslate"><span class="pre">l_bipolar()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.locate_events_from_table"><code class="docutils literal notranslate"><span class="pre">locate_events_from_table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.make_dir_safe"><code class="docutils literal notranslate"><span class="pre">make_dir_safe()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.nextpow2"><code class="docutils literal notranslate"><span class="pre">nextpow2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.select_events"><code class="docutils literal notranslate"><span class="pre">select_events()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.smooth"><code class="docutils literal notranslate"><span class="pre">smooth()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#iiic_detector.utils.xcorr"><code class="docutils literal notranslate"><span class="pre">xcorr()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-iiic_detector">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pdDetector</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">iiic_detector</a></li>
+      <li class="breadcrumb-item active">iiic_detector package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/iiic_detector.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="iiic-detector-package">
+<h1>iiic_detector package<a class="headerlink" href="#iiic-detector-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-iiic_detector.calculate">
+<span id="iiic-detector-calculate-module"></span><h2>iiic_detector.calculate module<a class="headerlink" href="#module-iiic_detector.calculate" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.calculate.calc_periodicity">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.calculate.</span></span><span class="sig-name descname"><span class="pre">calc_periodicity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">this_chan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">this_eeg_bp_smooth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#iiic_detector.calculate.calc_periodicity" title="Link to this definition"></a></dt>
+<dd><p>Function to calculate periodicity of an input signal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>this_chan</strong> (<em>pd.DataFrame</em>) – Table of events for which to calculate
+periodicity</p></li>
+<li><p><strong>this_eeg_bp_smooth</strong> (<em>np.ndarray</em>) – Full time series of bipolar power from
+channel where events were called</p></li>
+<li><p><strong>Fs</strong> (<em>float</em>) – Sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>result</strong> (<em>pd.DataFrame</em>) – A table of periodicity calculations based on the
+events provided in this_chan</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.calculate.calc_spatial_extent">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.calculate.</span></span><span class="sig-name descname"><span class="pre">calc_spatial_extent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group_events_bi_gt0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_bi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#iiic_detector.calculate.calc_spatial_extent" title="Link to this definition"></a></dt>
+<dd><p>Calculate the spatial extent as a percentage of bipolar channels</p>
+<blockquote>
+<div><p>N.b. In theory, bipolar events over-represents frontal/occipital channels
+– events from average montage may be less biased</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>group_events_bi_gt0</strong> (<em>pd.DataFrame</em>) – A pandas DataFrame of events
+(rows=channels) with channel statistics</p></li>
+<li><p><strong>c_bi</strong> (<em>list</em>) – A list of bipolar channel pairs</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>spatial_extent</strong> (<em>float</em>) – A float in the range [0,1] representing the</p></li>
+<li><p><strong>percentage of channels involved</strong></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-iiic_detector.eegfilt">
+<span id="iiic-detector-eegfilt-module"></span><h2>iiic_detector.eegfilt module<a class="headerlink" href="#module-iiic_detector.eegfilt" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.eegfilt.eegfilt">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.eegfilt.</span></span><span class="sig-name descname"><span class="pre">eegfilt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">srate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">locutoff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hicutoff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochframes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtorder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revfilt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">firtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'firls'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">causal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#iiic_detector.eegfilt.eegfilt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-iiic_detector.find_events">
+<span id="iiic-detector-find-events-module"></span><h2>iiic_detector.find_events module<a class="headerlink" href="#module-iiic_detector.find_events" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.find_events.find_events_simple">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.find_events.</span></span><span class="sig-name descname"><span class="pre">find_events_simple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">this_eeg_bp_smooth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#iiic_detector.find_events.find_events_simple" title="Link to this definition"></a></dt>
+<dd><p>Simple version of find_events function when the input data is already
+logical and we just want to find the events</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_log</strong> (<em>np.ndarray</em>) – Logical numpy array containing location of events</p></li>
+<li><p><strong>this_eeg_bp_smooth</strong> (<em>np.ndarray</em>) – Numpy array with signal data</p></li>
+<li><p><strong>channel_labels</strong> (<em>list</em>) – List of channel labels</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>loc</strong> (<em>np.ndarray</em>) – Logical numpy array containing location of events</p></li>
+<li><p><strong>these_events</strong> (<em>pd.DataFrame</em>) – Pandas DataFrame containing relevant data
+from specified events</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.find_events.group_events_bi">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.find_events.</span></span><span class="sig-name descname"><span class="pre">group_events_bi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bi_events</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_bi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eeg_bp_smooth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#iiic_detector.find_events.group_events_bi" title="Link to this definition"></a></dt>
+<dd><p>Function to group bipolar events</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bi_event</strong> (<em>pd.DataFrame</em>) – Pandas DataFrame of bipolar events</p></li>
+<li><p><strong>seg_bi</strong> (<em>np.ndarray</em>) – Differential EEG signals</p></li>
+<li><p><strong>eeg_bp_smooth</strong> (<em>np.ndarray</em>) – Numpy array containing smoothed EEG signal</p></li>
+<li><p><strong>channels</strong> (<em>list</em>) – List of strings containing channel labels</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>these_events</strong> (<em>pd.DataFrame</em>) – Pandas DataFrame containing relevant data
+from specified events</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.find_events.hilo_dynamic_auto6">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.find_events.</span></span><span class="sig-name descname"><span class="pre">hilo_dynamic_auto6</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh_hi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh_lo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_win</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_lo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_hi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataFrame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#iiic_detector.find_events.hilo_dynamic_auto6" title="Link to this definition"></a></dt>
+<dd><p>Use a high-low threshold approach to find events. Naive to specific BP or
+montage. Accepts thresh_hi, thresh_lo based on percentile – but uses local
+slope to determine low threshold.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seg</strong> (<em>np.ndarray</em>) – n x m double array of EEG in bipolar montage</p></li>
+<li><p><strong>Fs</strong> (<em>float</em>) – sampling freq in sec-1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>loc</strong> (<em>np.ndarray</em>) – n x m array corresponding to positions of candidate discharges.</p></li>
+<li><p><strong>theseEvents</strong> (<em>list</em>) – list containing stat objects from region props</p></li>
+<li><p><strong>eeg_bp_smooth</strong> (<em>np.ndarray</em>) – np.ndarray containing smoothed EEG signal</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-iiic_detector.pd_detect">
+<span id="iiic-detector-pd-detect-module"></span><h2>iiic_detector.pd_detect module<a class="headerlink" href="#module-iiic_detector.pd_detect" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.pd_detect.pd_detect">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.pd_detect.</span></span><span class="sig-name descname"><span class="pre">pd_detect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Series</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#iiic_detector.pd_detect.pd_detect" title="Link to this definition"></a></dt>
+<dd><p>Function to detect PD events</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>seg</strong> (<em>np.ndarray</em>) – Array of EEG data</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>freq</strong> (<em>float</em>) – Sampling frequency</p></li>
+<li><p><strong>channels</strong> (<em>pd.Series</em>) – Pandas Series of channels from bipolar montage</p></li>
+<li><p><strong>interpretation</strong> (<em>list</em>) – List of interpretations of EEG data</p></li>
+<li><p><strong>data_obj</strong> (<em>dict</em>) – Dictionary containing various statistics used in
+diagnosis</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-iiic_detector.utils">
+<span id="iiic-detector-utils-module"></span><h2>iiic_detector.utils module<a class="headerlink" href="#module-iiic_detector.utils" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="iiic_detector.utils.FileData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">FileData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_human_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_human_types_pct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stats_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iiic_detector.utils.FileData" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iiic_detector.utils.FileData.file">
+<span class="sig-name descname"><span class="pre">file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#iiic_detector.utils.FileData.file" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iiic_detector.utils.FileData.n">
+<span class="sig-name descname"><span class="pre">n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#iiic_detector.utils.FileData.n" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iiic_detector.utils.FileData.stats_obj">
+<span class="sig-name descname"><span class="pre">stats_obj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#iiic_detector.utils.FileData.stats_obj" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iiic_detector.utils.FileData.y_human_types">
+<span class="sig-name descname"><span class="pre">y_human_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#iiic_detector.utils.FileData.y_human_types" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="iiic_detector.utils.FileData.y_human_types_pct">
+<span class="sig-name descname"><span class="pre">y_human_types_pct</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DataFrame</span></em><a class="headerlink" href="#iiic_detector.utils.FileData.y_human_types_pct" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="iiic_detector.utils.MATFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">MATFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eng</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iiic_detector.utils.MATFile" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.bwselect">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">bwselect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idxs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#iiic_detector.utils.bwselect" title="Link to this definition"></a></dt>
+<dd><p>Reimplementation of MATLAB bwselect</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.create_nan_df">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">create_nan_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">this_table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#iiic_detector.utils.create_nan_df" title="Link to this definition"></a></dt>
+<dd><p>Helper function to create a pandas DataFrame of the same format as the
+input, but filled with NaN values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>this_table</strong> (<em>pd.DataFrame</em>) – DataFrame to replicate formatting from</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>nan_table</strong> (<em>pd.DataFrame</em>) – DataFrame with NaN values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.create_table_df">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">create_table_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">matlab.object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eng</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">engine</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#iiic_detector.utils.create_table_df" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.cull_events_by_channel">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">cull_events_by_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pd_events_bi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_bi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#iiic_detector.utils.cull_events_by_channel" title="Link to this definition"></a></dt>
+<dd><p>Select only events from event pandas DataFrame that occur in channels
+found in the list of channels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pd_events_bi</strong> (<em>pd.DataFrame</em>) – A pandas DataFrame of channel events (rows=events)</p></li>
+<li><p><strong>c_bi</strong> (<em>list</em>) – A list of bipolar channel pairs</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>pd_events_bi_s</strong> (<em>pd.DataFrame</em>) – A pandas DataFrame of channel events that</p></li>
+<li><p><strong>includes only those involving the specified channel names</strong></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.get_channel_labels_bipolar">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">get_channel_labels_bipolar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#iiic_detector.utils.get_channel_labels_bipolar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.kmeans">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">kmeans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_clusters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#iiic_detector.utils.kmeans" title="Link to this definition"></a></dt>
+<dd><p>Wrapper for kmeans function that makes sure that kmeans output labels the
+data with higest number, and background as zero, and returns in same
+dimensions as provided</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.l_bipolar">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">l_bipolar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#iiic_detector.utils.l_bipolar" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.locate_events_from_table">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">locate_events_from_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#iiic_detector.utils.locate_events_from_table" title="Link to this definition"></a></dt>
+<dd><p>Takes a dataframe of events and returns an n x m logical array
+indicating the location of all events in an epoch</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.make_dir_safe">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">make_dir_safe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dirname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#iiic_detector.utils.make_dir_safe" title="Link to this definition"></a></dt>
+<dd><p>Helper function which checks for directory existence before creation</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.nextpow2">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">nextpow2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iiic_detector.utils.nextpow2" title="Link to this definition"></a></dt>
+<dd><p>Helper function to return next largest value that is a power of 2</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.select_events">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">select_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bipolar_events</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criteria</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#iiic_detector.utils.select_events" title="Link to this definition"></a></dt>
+<dd><p>Function to take an event dataframe and return a new table containing
+events based on passed criteria</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bipolar_events</strong> (<em>pd.DataFrame</em>) – Pandas dataframe containing events
+and associated data</p></li>
+<li><p><strong>criteria</strong> (<em>list</em>) – List of strings containing comparative expressions to
+be evaluated using eval command. Must reference headers in
+bipolar_events, e.g. “(e.Area&gt;30)” or “!(e.Area&gt;30)”. Use e.***
+syntax</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>these_events_new</strong> (<em>pd.DataFrame</em>) – Pandas dataframe containing subset of
+the original n rows of bipolar_events according to specified
+criteria</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.smooth">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">smooth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">win_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#iiic_detector.utils.smooth" title="Link to this definition"></a></dt>
+<dd><p>Python implementation of MATLAB’s smooth function</p>
+<p>Implemented in: <a class="reference external" href="https://stackoverflow.com/a/40443565">https://stackoverflow.com/a/40443565</a></p>
+<p>TODO: This is slightly (&lt;1%) off from the MATLAB implementation</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="iiic_detector.utils.xcorr">
+<span class="sig-prename descclassname"><span class="pre">iiic_detector.utils.</span></span><span class="sig-name descname"><span class="pre">xcorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxlag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#iiic_detector.utils.xcorr" title="Link to this definition"></a></dt>
+<dd><p>Implementation of MATLAB xcorr</p>
+<p>Taken from: <a class="reference external" href="https://stackoverflow.com/a/60245667">https://stackoverflow.com/a/60245667</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>np.ndarray</em>) – First array for correlation</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em>) – Second array for correlation</p></li>
+<li><p><strong>maxlag</strong> (<em>int</em>) – Lag range</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>corr_arr</strong> (<em>np.ndarray</em>) – Cross correlation values normalized to
+cross-correlation at lag index 0</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-iiic_detector">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-iiic_detector" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="iiic_detector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Dr. Michael Brandon Westover, Dr. Chris McGraw, Dr. Jin Jing, Shashank Manjunath, Samvrit Rao.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
